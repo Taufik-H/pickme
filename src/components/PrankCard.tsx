@@ -53,19 +53,19 @@ const PrankCard: React.FC<PrankCardProps> = ({
   }, [onYesClick]);
 
   const noButtonTexts = [
-    "No",
-    "Are you sure?",
-    "Really?",
-    "Think again!",
-    "Nah",
-    "Come on...",
-    "Please?",
-    "Pretty please?",
-    "Fine, whatever",
-    "You can't catch me!",
-    "Still no!",
-    "Never!",
-    "Just click YES!",
+    "Enggak, ah!",
+    "Yakin nih?",
+    "Seriusan, bro?",
+    "Coba pikir lagi deh!",
+    "Duh, masa sih?",
+    "Ayo dong, jangan gitu!",
+    "Plis banget, masa tega?",
+    "Masa sih lo tega?",
+    "Yaudah deh, terserah~",
+    "Gak bakal kena, wkwk!",
+    "Masih nggak mau!",
+    "Never ever, bestie!",
+    "Klik YES dong, biar seru!",
   ];
 
   return (
@@ -107,7 +107,7 @@ const PrankCard: React.FC<PrankCardProps> = ({
                 ease: "easeInOut",
               }}
             >
-              {prankData.statement}? 🤔
+              {prankData.statement}? 😏
             </motion.h1>
           </motion.div>
 
@@ -173,10 +173,10 @@ const PrankCard: React.FC<PrankCardProps> = ({
               className="text-center mt-4"
             >
               <p className="text-sm text-gray-600 font-medium">
-                {noClickCount === 1 && "The button is trying to escape! 🏃‍♂️"}
-                {noClickCount === 2 && "It's getting faster! 💨"}
-                {noClickCount === 3 && "You can't catch it! 😂"}
-                {noClickCount >= 4 && "Just give up and click YES! 🤷‍♂️"}
+                {noClickCount === 1 && "Waduh, tombolnya kabur! 🏃‍♂️"}
+                {noClickCount === 2 && "Buset makin cepet! 💨"}
+                {noClickCount === 3 && "Gak bakal dapet, bro! 😂"}
+                {noClickCount >= 4 && "Udah lah, klik YES aja! 🤣"}
               </p>
             </motion.div>
           )}
