@@ -1,3 +1,32 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Brutalism Card */
+.brutalism-card {
+  @apply bg-white border-2 border-neutral-200 rounded-lg shadow-neutral-200 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] p-6;
+}
+
+/* Brutalism Button (Violet) */
+.violet-brutalism {
+  @apply border-2 border-violet-600 bg-violet-500 text-white shadow-violet-600 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] rounded-lg cursor-pointer transition-all duration-150 font-bold px-5 py-2;
+}
+.violet-brutalism:active {
+  @apply shadow-none translate-x-1 translate-y-1 ring-0 ring-offset-0;
+}
+
+/* Generic brutalism button (if needed) */
+.brutalism-btn {
+  @apply border-2 border-neutral-200 bg-white shadow-neutral-200 text-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] rounded-lg cursor-pointer transition-all duration-150 font-bold px-5 py-2;
+}
+.brutalism-btn:active {
+  @apply shadow-none translate-x-1 translate-y-1 ring-0 ring-offset-0;
+}
+
+/* Brutalism Input */
+.brutalism-input {
+  @apply border-2 border-neutral-200 shadow-neutral-200 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] rounded-md px-2 h-10 text-base transition-all;
+}
+.brutalism-input:focus-visible {
+  @apply shadow-none translate-x-[2px] translate-y-[2px] ring-0 ring-offset-0;
+}

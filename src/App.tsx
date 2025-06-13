@@ -134,30 +134,21 @@ function App() {
             )}
 
             {appState === "form" && (
-              <CreatePrankForm
-                key="form"
-                onSubmit={handleFormSubmit}
-                onBack={resetToLanding}
-              />
+              <CreatePrankForm key="form" onSubmit={handleFormSubmit} />
             )}
 
             {shareUrl && appState === "form" && (
-              <motion.div
-                key="share-url"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mt-4 bg-white rounded-2xl p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] border-4 border-black"
-              >
+              <div className="mt-4 bg-white brutalism-card">
                 <h3 className="text-xl font-black text-gray-800 mb-4 text-center">
                   🎉 Prank Created!
                 </h3>
-                <div className="bg-gray-100 p-3 rounded-xl border-2 border-black mb-4">
+                <div className="bg-gray-100 p-3 rounded-xl brutalism-input line-clamp-1  mb-4">
                   <p className="text-sm text-gray-600 break-all">{shareUrl}</p>
                 </div>
                 <div className="flex gap-2">
                   <motion.button
                     onClick={copyShareUrl}
-                    className="flex-1 bg-green-400 hover:bg-green-300 text-black font-black px-4 py-3 rounded-xl shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] border-2 border-black transition-colors flex items-center justify-center gap-2"
+                    className="flex-1 violet-brutalism flex items-center justify-center gap-2"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -166,14 +157,14 @@ function App() {
                   </motion.button>
                   <motion.button
                     onClick={resetToLanding}
-                    className="bg-gray-400 hover:bg-gray-300 text-black font-black px-4 py-3 rounded-xl shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] border-2 border-black transition-colors"
+                    className="bg-gray-400 hover:bg-gray-300 text-black font-black px-4 py-3 rounded-xl shadow-gray-500 border-gray-500 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] border-2  transition-colors"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
                     <Plus className="w-4 h-4" />
                   </motion.button>
                 </div>
-              </motion.div>
+              </div>
             )}
 
             {appState === "prank" && (

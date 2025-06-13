@@ -1,16 +1,12 @@
-import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, Sparkles, Zap } from "lucide-react";
+import { Sparkles, Zap } from "lucide-react";
+import React, { useState } from "react";
 
 interface CreatePrankFormProps {
   onSubmit: (data: { statement: string; resultText: string }) => void;
-  onBack: () => void;
 }
 
-const CreatePrankForm: React.FC<CreatePrankFormProps> = ({
-  onSubmit,
-  onBack,
-}) => {
+const CreatePrankForm: React.FC<CreatePrankFormProps> = ({ onSubmit }) => {
   const [statement, setStatement] = useState("");
   const [resultText, setResultText] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -34,57 +30,41 @@ const CreatePrankForm: React.FC<CreatePrankFormProps> = ({
     }
   };
 
-  const handleBack = () => {
-    onBack();
-  };
-
   return (
     <motion.div
       initial={{ scale: 0, rotate: 10 }}
       animate={{ scale: 1, rotate: 0 }}
       exit={{ scale: 0, rotate: -10 }}
       transition={{ type: "spring", stiffness: 260, damping: 20 }}
-      className="bg-white rounded-3xl p-2 sm:p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] border-4 border-black relative overflow-hidden w-full max-w-xs sm:max-w-md mx-auto"
+      className="brutalism-card relative overflow-hidden w-full max-w-xs sm:max-w-md mx-auto bg-white"
     >
-      {/* Animated background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-green-100 via-blue-50 to-purple-100 opacity-50" />
-
       <div className="relative z-10">
-        <div className="flex items-center mb-4 sm:mb-6">
-          <motion.button
-            onClick={handleBack}
-            className="bg-gray-400 hover:bg-gray-300 text-black p-2 rounded-xl shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] border-2 border-black transition-colors mr-2 sm:mr-4"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            <ArrowLeft className="w-5 h-5" />
-          </motion.button>
-
+        <div className="flex items-center mb-7 sm:mb-10">
           <div className="flex-1 text-center">
             <motion.div
               animate={{ rotate: [0, 10, -10, 0] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="inline-block"
+              className="inline-block mb-2"
             >
-              <Sparkles className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-500 mx-auto mb-1 sm:mb-2" />
+              <Sparkles className="w-8 h-8 sm:w-10 sm:h-10 text-violet-500 mx-auto" />
             </motion.div>
-            <h2 className="text-lg sm:text-2xl font-black text-gray-800">
+            <h2 className="text-2xl sm:text-3xl font-black text-gray-800">
               Bikin Prank Kocakmu! 🤡
             </h2>
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-8">
           {/* Statement Input */}
           <div>
-            <label className="block text-base sm:text-lg font-black text-gray-800 mb-1 sm:mb-2">
+            <label className="block text-sm sm:text-lg font-black text-gray-800 mb-2">
               Mau nanya apa nih ke temen lo? 😏
             </label>
             <input
               type="text"
               value={statement}
               onChange={(e) => setStatement(e.target.value)}
-              className="w-full px-3 py-2 sm:px-4 sm:py-3 text-sm sm:text-lg font-bold bg-yellow-100 border-4 border-black rounded-xl shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-shadow"
+              className="brutalism-input w-full"
               placeholder="Contoh: Lo suka gue nggak?"
               maxLength={50}
               required
@@ -93,14 +73,14 @@ const CreatePrankForm: React.FC<CreatePrankFormProps> = ({
 
           {/* Result Text */}
           <div>
-            <label className="block text-base sm:text-lg font-black text-gray-800 mb-1 sm:mb-2">
-              Pesan kemenangan lo kalo dia klik YES! 🥳
+            <label className="block text-sm sm:text-lg font-black text-gray-800 mb-2">
+              Kalo dia klik YES! 🥳
             </label>
             <input
               type="text"
               value={resultText}
               onChange={(e) => setResultText(e.target.value)}
-              className="w-full px-3 py-2 sm:px-4 sm:py-3 text-sm sm:text-lg font-bold bg-green-100 border-4 border-black rounded-xl shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-shadow"
+              className="brutalism-input w-full"
               placeholder="Contoh: Udah kuduga lo suka sama gue!"
               maxLength={80}
               required
@@ -111,22 +91,16 @@ const CreatePrankForm: React.FC<CreatePrankFormProps> = ({
           <motion.button
             type="submit"
             disabled={isSubmitting}
-            className={`w-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-400 hover:to-blue-400 text-white font-black text-sm sm:text-xl px-3 sm:px-8 py-2 sm:py-4 rounded-2xl shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] border-4 border-black transition-all duration-200 flex items-center justify-center gap-2 sm:gap-3 ${
+            className={`violet-brutalism w-full flex items-center justify-center gap-3 sm:gap-4 text-lg sm:text-2xl ${
               isSubmitting ? "opacity-50 cursor-not-allowed" : ""
             }`}
-            whileHover={!isSubmitting ? { scale: 1.05, rotate: 1 } : {}}
-            whileTap={!isSubmitting ? { scale: 0.95 } : {}}
-            animate={{
-              boxShadow: [
-                "6px 6px 0px 0px rgba(0,0,0,1)",
-                "8px 8px 0px 0px rgba(0,0,0,1)",
-                "6px 6px 0px 0px rgba(0,0,0,1)",
-              ],
-            }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            whileHover={!isSubmitting ? { scale: 1.05 } : {}}
+            whileTap={!isSubmitting ? { scale: 0.97 } : {}}
           >
-            <Zap className="w-5 h-5 sm:w-6 sm:h-6" />
-            {isSubmitting ? "Bentar ya..." : "Bikin Link Prank!"}
+            <Zap className="w-6 h-6 sm:w-8 sm:h-8" />
+            <span className="inline-block align-middle">
+              {isSubmitting ? "Bentar ya..." : "Bikin Link Prank!"}
+            </span>
           </motion.button>
         </form>
       </div>

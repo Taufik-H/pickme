@@ -67,34 +67,34 @@ const ResultCardComponent: React.FC<ResultCardProps> = ({
         damping: 20,
         duration: 0.2,
       }}
-      className="bg-white rounded-3xl p-2 sm:p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] border-4 border-black relative overflow-hidden w-full max-w-xs sm:max-w-md mx-auto"
+      className="brutalism-card relative overflow-hidden w-full max-w-xs sm:max-w-md mx-auto"
     >
-      {/* Animated background elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-pink-100 via-purple-50 to-blue-100 opacity-50" />
+      <motion.div
+        className="absolute inset-0 bg-white"
+        animate={{
+          backgroundPosition: ["0% 0%", "100% 100%"],
+          opacity: [0.6, 0.8, 0.6],
+        }}
+        transition={{
+          duration: 5,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
 
       <div className="relative z-10">
-        <motion.div
-          className="text-center mb-2 sm:mb-6"
-          animate={{ y: [0, -5, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <div className="flex justify-center mb-1 sm:mb-4">
+        <div className="text-center mb-7 sm:mb-10">
+          <div className="flex justify-center mb-3 sm:mb-5">
             <motion.div
               animate={{ rotate: [0, 10, -10, 0] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              className="inline-block"
             >
-              <Crown className="w-6 h-6 sm:w-12 sm:h-12 text-yellow-500" />
+              <Crown className="w-8 h-8 sm:w-14 sm:h-14 text-violet-500" />
             </motion.div>
           </div>
-
-          {/* Meme image only, resultText is inside meme */}
           {memeUrl && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="w-28 h-28 sm:w-48 sm:h-48 mx-auto mb-2 sm:mb-4 rounded-2xl overflow-hidden border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] bg-gray-100"
-            >
+            <div className="w-32 h-32 sm:w-52 sm:h-52 mx-auto mb-3 sm:mb-6 rounded-lg overflow-hidden shadow-md bg-gray-100">
               <img
                 src={memeUrl}
                 alt="Meme"
@@ -104,24 +104,16 @@ const ResultCardComponent: React.FC<ResultCardProps> = ({
                   e.currentTarget.src = "/fallback-meme.gif";
                 }}
               />
-            </motion.div>
+            </div>
           )}
-        </motion.div>
+        </div>
 
         <div className="flex justify-center">
           <motion.button
             onClick={onReset}
-            className="bg-blue-400 hover:bg-blue-300 text-black font-black text-xs sm:text-lg px-3 sm:px-8 py-2 sm:py-4 rounded-2xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] border-2 border-black transition-colors"
-            whileHover={{ scale: 1.1, rotate: 5 }}
-            whileTap={{ scale: 0.95 }}
-            animate={{
-              boxShadow: [
-                "4px 4px 0px 0px rgba(0,0,0,1)",
-                "6px 6px 0px 0px rgba(0,0,0,1)",
-                "4px 4px 0px 0px rgba(0,0,0,1)",
-              ],
-            }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            className="violet-brutalism w-full flex items-center justify-center gap-3 sm:gap-4 text-lg sm:text-2xl"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.97 }}
           >
             Giliran Lo Nih! 👑
           </motion.button>
