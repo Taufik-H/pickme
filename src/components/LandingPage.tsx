@@ -46,7 +46,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onCreatePrank }) => {
             animate={{ scale: [1, 1.05, 1] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
           >
-            Create the funniest prank to trick your friends! 😈
+            Bikin prank buat temen lu, sesekali ngakak dulu! 😈
           </motion.p>
         </motion.div>
 
@@ -65,7 +65,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onCreatePrank }) => {
           transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
         >
           <Zap className="w-6 h-6" />
-          Create Prank
+          Bikin Prank
         </motion.button>
 
         <motion.div
@@ -74,10 +74,9 @@ const LandingPage: React.FC<LandingPageProps> = ({ onCreatePrank }) => {
           transition={{ delay: 0.5 }}
           className="mt-6 text-sm text-gray-600"
         >
-          <p>✨ Customize your message</p>
-          <p>🖼️ Add your photo</p>
-          <p>🔗 Share with friends</p>
-          <p>😂 Watch them fall for it!</p>
+          <p>✨ isi katanya</p>
+          <p>🔗 Share ke temen/doi lu kalo punya</p>
+          <p>😂 ngakak!</p>
         </motion.div>
       </div>
     </motion.div>
