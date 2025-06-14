@@ -10,37 +10,60 @@ interface ResultCardProps {
   onReset: () => void;
 }
 
-// List of popular meme GIF templates from memegen.link (only GIFs)
+// List of meme templates (populer, lucu, dan beberapa animasi)
 const memeTemplates = [
-  "buzz",
-  "disastergirl",
-  "doge",
   "drake",
   "gru",
   "joker",
-  "kermit",
   "leo",
-  "morpheus",
-  "sad-biden",
-  "sad-boehner",
-  "sad-bush",
-  "sad-clinton",
-  "sad-obama",
-  "sad-tux",
+  "doge",
+  "buzz",
   "spongebob",
   "yodawg",
   "yuno",
+  "american-chopper",
+  "damn",
+  "black-guy",
+  "distracted-boyfriend",
+  "change-my-mind",
+  "two-buttons",
+  "expanding-brain",
+  "rollsafe",
+  "surprised-pikachu",
+  "is-this-a-pigeon",
+  "left-exit-12-off-ramp",
+  "boardroom-meeting",
+  "mocking-spongebob",
+  "pikachu",
+  "batman-slapping-robin",
 ];
 
 function getRandomTemplate() {
   return memeTemplates[Math.floor(Math.random() * memeTemplates.length)];
 }
 
+function wrapText(text: string, maxLen: number) {
+  const words = text.split(" ");
+  let lines: string[] = [];
+  let current = "";
+  for (const word of words) {
+    if ((current + " " + word).trim().length > maxLen) {
+      lines.push(current.trim());
+      current = word;
+    } else {
+      current += " " + word;
+    }
+  }
+  if (current) lines.push(current.trim());
+  return lines.join("\n");
+}
+
 function getMemeUrl(resultText: string) {
   const template = getRandomTemplate();
   // Use _ for top text (invisible), encodeURIComponent for bottom text
   const top = "_";
-  const bottom = encodeURIComponent(resultText.replace(/ /g, "_"));
+  const wrapped = wrapText(resultText, 20);
+  const bottom = encodeURIComponent(wrapped.replace(/ /g, "_"));
   // Always use .gif
   return `https://api.memegen.link/images/${template}/${top}/${bottom}.gif`;
 }
@@ -50,9 +73,11 @@ const ResultCardComponent: React.FC<ResultCardProps> = ({
   onReset,
 }) => {
   const [memeUrl, setMemeUrl] = useState<string>("");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setMemeUrl(getMemeUrl(prankData.resultText || "Mantap Banget!"));
+    setIsLoading(true);
     // eslint-disable-next-line
   }, [prankData.resultText]);
 
@@ -94,29 +119,35 @@ const ResultCardComponent: React.FC<ResultCardProps> = ({
             </motion.div>
           </div>
           {memeUrl && (
-            <div className="w-32 h-32 sm:w-52 sm:h-52 mx-auto mb-3 sm:mb-6 rounded-lg overflow-hidden shadow-md bg-gray-100">
+            <div
+              className="mx-auto mb-3 sm:mb-6"
+              style={{ padding: 10, position: "relative" }}
+            >
+              {isLoading && (
+                <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-80 z-10 rounded-lg">
+                  <div className="w-12 h-12 border-4 border-violet-300 border-t-violet-600 rounded-full animate-spin"></div>
+                </div>
+              )}
               <img
                 src={memeUrl}
                 alt="Meme"
-                className="w-full h-full object-cover"
+                className="w-full h-auto max-h-[340px] sm:max-h-[420px] rounded-lg overflow-hidden shadow-md bg-gray-100"
+                style={{
+                  display: "block",
+                  width: "100%",
+                  maxWidth: "100%",
+                  objectFit: "contain",
+                  padding: 0,
+                }}
                 loading="lazy"
+                onLoad={() => setIsLoading(false)}
                 onError={(e) => {
                   e.currentTarget.src = "/fallback-meme.gif";
+                  setIsLoading(false);
                 }}
               />
             </div>
           )}
-        </div>
-
-        <div className="flex justify-center">
-          <motion.button
-            onClick={onReset}
-            className="violet-brutalism w-full flex items-center justify-center gap-3 sm:gap-4 text-lg sm:text-2xl"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.97 }}
-          >
-            Giliran Lo Nih! 👑
-          </motion.button>
         </div>
       </div>
     </motion.div>

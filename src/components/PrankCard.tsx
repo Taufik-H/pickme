@@ -121,7 +121,6 @@ const PrankCard: React.FC<PrankCardProps> = ({
               top: noButtonPosition.y,
               zIndex: 9999,
             }}
-            animate={{}}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97, y: 2 }}
           >
