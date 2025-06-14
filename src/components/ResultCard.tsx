@@ -10,7 +10,7 @@ interface ResultCardProps {
   onReset: () => void;
 }
 
-// List of meme templates (populer, lucu, dan beberapa animasi)
+// List of single-image animated meme templates (popular and fun)
 const memeTemplates = [
   "drake",
   "gru",
@@ -21,21 +21,13 @@ const memeTemplates = [
   "spongebob",
   "yodawg",
   "yuno",
-  "american-chopper",
-  "damn",
-  "black-guy",
-  "distracted-boyfriend",
-  "change-my-mind",
-  "two-buttons",
-  "expanding-brain",
   "rollsafe",
   "surprised-pikachu",
-  "is-this-a-pigeon",
-  "left-exit-12-off-ramp",
-  "boardroom-meeting",
   "mocking-spongebob",
+  "damn",
+  "black-guy",
+  "change-my-mind",
   "pikachu",
-  "batman-slapping-robin",
 ];
 
 function getRandomTemplate() {
@@ -64,8 +56,8 @@ function getMemeUrl(resultText: string) {
   const top = "_";
   const wrapped = wrapText(resultText, 20);
   const bottom = encodeURIComponent(wrapped.replace(/ /g, "_"));
-  // Always use .gif
-  return `https://api.memegen.link/images/${template}/${top}/${bottom}.gif`;
+  // Using .webp for better compression and support for both static and animated memes
+  return `https://api.memegen.link/images/${template}/${top}/${bottom}.webp`;
 }
 
 const ResultCardComponent: React.FC<ResultCardProps> = ({
